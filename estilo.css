@@ -1,0 +1,111 @@
+/* Estilo geral para o corpo da página */
+body {
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+/* Botões principais */
+.botoes {
+    padding: 20px;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-right: 50px;
+    margin-left: 20px;
+}
+
+.botoes:hover {
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+}
+
+/* Container onde os cartões de funcionários serão exibidos */
+#conteudo {
+    width: 98%;
+    margin: auto;
+    border: 1px solid gray;
+    margin-top: 30px;
+    min-height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Estilo dos cartões individuais */
+.cartoes {
+    max-width: 300px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    margin: 20px;
+    transition: all 0.5s;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.cartoes:hover {
+    background-color: rgb(125, 115, 188);
+    transform: scale(1.1);
+    cursor: pointer;
+    color: white;
+}
+
+/* Botão de fechamento do formulário */
+#btnFechar {
+    background-color: blue;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#btnFechar:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+
+/* Tela escura para o formulário */
+.tela_escura {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+/* Estilo do formulário */
+.formulario {
+    width: 300px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+}
+
+input, select {
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+#btnReabrir {
+    background-color: green;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#btnReabrir:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}

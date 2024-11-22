@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Gestão de Funcionários</title>
+</head>
+<body>
+
+    <!-- Botões para abrir o formulário e gerenciar os funcionários -->
+    <button id="btnNovo" class="botoes">Novo</button>
+    <button id="btnGerenciar" class="botoes">Gerenciar</button>
+
+    <!-- Conteúdo onde os formulários e informações serão carregados -->
+    <div id="conteudo"></div>
+    
+
+    <!-- Tela escura para o formulário -->
+    <div class="tela_escura" id="formularioContainer" style="display: none;">
+        <div class="formulario">
+            <button id="btnFechar" class="botoes">x</button>
+            <h2>Cadastro de Funcionário</h2>
+            <form id="formFuncionario">
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome" required><br><br>
+
+                <label for="setor">Setor:</label><br>
+                <select id="setor" name="setor" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="Administrativo">Administrativo</option>
+                    <option value="Suporte">Suporte</option>
+                </select><br><br>
+
+                <button type="submit" class="botoes">Cadastrar Funcionário</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Quando clicar no botão "Novo", abre o formulário de cadastro
+            $("#btnNovo").click(function() {
+                $("#formularioContainer").fadeIn(); // Exibe a tela de cadastro
+            });
+
+            // Quando clicar no botão "Fechar", fecha o formulário de cadastro
+            $("#btnFechar").click(function() {
+                $("#formularioContainer").fadeOut(); // Fecha a tela de cadastro
+            });
+
+            // Quando o formulário de cadastro for submetido
+            $("#formFuncionario").submit(function(event) {
+                event.preventDefault();
+
+                var nome = $("#nome").val();
+                var setor = $("#setor").val();
+
+                // AJAX para enviar os dados do formulário ao servidor
+                $.ajax({
+                    url: "cadastrar_funcionario.php", // O arquivo PHP que processa o cadastro
+                    type: "POST",
+                    data: {
+                        nome: nome,
+                        setor: setor
+                    },
+                    success: function(response) {
+                        alert(response); // Exibe a resposta (sucesso ou erro)
+                        if(response === "Funcionário cadastrado com sucesso!") {
+                            $("#formFuncionario")[0].reset(); // Limpa o formulário
+                        }
+                    },
+                    error: function() {
+                        alert("Falha ao cadastrar funcionário. Tente novamente.");
+                    }
+                });
+            });
+
+            // Quando o botão "Gerenciar" for clicado
+            $("#btnGerenciar").click(function() {
+                // Carregar os dados dos funcionários
+                $.ajax({
+                    url: "consultar_funcionarios.php", // PHP para consultar funcionários
+                    type: "GET",
+                    success: function(response) {
+                        $("#conteudo").html(response); // Exibe os funcionários no conteúdo
+                    },
+                    error: function() {
+                        alert("Falha ao carregar os dados dos funcionários.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
